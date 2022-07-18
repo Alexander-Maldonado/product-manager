@@ -13,15 +13,26 @@ const OneProduct = (props)=>{
             setOneProduct(res.data);
         })
         .catch((err)=>console.log(err))
-    },[])
+    },[]);
+
+    const deleteProduct = () => {
+        axios.delete(`http://localhost:8000/api/products/${id}`)
+            .then((res) => {
+                console.log(res);
+                console.log(res.data);
+                navigate('/');
+            })
+            .catch((err) => console.log(err));
+    };
 
     return(
         <div>
             <h2>{oneProduct.title}</h2>
             <p>Price: ${oneProduct.price}</p>
             <p>Description: ${oneProduct.description}</p>
+            <button onClick={deleteProduct}>Delete</button>
         </div>
-    )
-}
+    );
+};
 
 export default OneProduct;
