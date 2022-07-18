@@ -1,17 +1,19 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 
-const display=(props)=>{
+const NewProduct=(props)=>{
     const [title, setTitle] = useState('');
     const [price, setPrice] = useState('');
     const [description, setDescription] = useState('');
+    const {products, setProducts} = props;
 
     const submitForm=(e)=>{
         e.preventDefault();
-        axios.post('http://localhost:8000/api/products',{title,price,description})
+        axios.post('http://localhost:8000/api/product',{title,price,description})
             .then((res)=>{
                 console.log(res);
                 console.log(res.data);
+                setProducts([...products, res.data]);
                 setTitle('');
                 setPrice('');
                 setDescription('');
@@ -54,4 +56,4 @@ const display=(props)=>{
     );
 };
 
-export default display;
+export default NewProduct;

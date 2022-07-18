@@ -1,12 +1,17 @@
 import './App.css';
-import display from './components/display';
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import OneProduct from './components/OneProduct';
+import Main from './views/Main';
 
 function App() {
   return (
     <BrowserRouter>
-    <Routes>
-        <Route path='/' element={display} />
-      </Routes>
+      <div>
+        <Routes>
+          <Route path='/' element={<Main/>}/>
+          <Route path='/product/:id' element={<OneProduct/>}/>
+        </Routes>
+      </div>
     </BrowserRouter>
   );
 }
